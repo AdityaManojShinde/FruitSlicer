@@ -1,10 +1,7 @@
 # Fruit Slicer Game
 
+![Thumbnail](screenshots/thumbnail.png)
 A Python implementation of the classic Fruit Ninja game built with Pygame and Amazon Q CLI.
-
-## Gameplay Demo
-
-https://github.com/user/PythonGame/assets/video/gameplay.mp4
 
 ## Screenshots
 
@@ -50,7 +47,6 @@ This is a Python implementation of a Fruit Ninja-style game built using the Pyga
 │   ├── sprite_manager.py
 │   └── utils.py
 ├── screenshots/
-├── video/
 ├── venv/
 ├── fruit_ninja_scores.json
 ├── requirements.txt
