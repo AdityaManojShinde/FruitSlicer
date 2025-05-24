@@ -5,16 +5,16 @@ A Python implementation of the classic Fruit Ninja game built with Pygame and Am
 
 ## Screenshots
 
-![Main Menu](screenshots/screenshot1.png)
+![Main Menu](screenshots/s1.png)
 _Main menu screen with play and about options_
 
-![Gameplay](screenshots/screenshot2.png)
+![Gameplay](screenshots/s2.png)
 _Slicing fruits with the custom sword cursor_
 
-![Special Effects](screenshots/screenshot3.png)
+![Special Effects](screenshots/s3.png)
 _Special effects when slicing fruits_
 
-![Game Over](screenshots/screenshot4.png)
+![Game Over](screenshots/s4.png)
 _Game over screen with high score_
 
 ## Overview

@@ -125,8 +125,8 @@ class Game:
     def load_backgrounds(self):
         """Load and scale all background images"""
         try:
-            # Load home screen background (Background1)
-            home_bg_path = GameConstants.BACKGROUND_IMAGES[0]  # Background1.jpg is at index 0
+            # Load home screen background
+            home_bg_path = GameConstants.HOME_SCREEN_BACKGROUND
             self.home_background = pygame.image.load(home_bg_path).convert_alpha()
             
             # Scale to current window size while preserving aspect ratio
@@ -153,35 +153,47 @@ class Game:
             # Load all gameplay backgrounds with proper aspect ratio preservation
             self.game_backgrounds = []
             for bg_path in GameConstants.BACKGROUND_IMAGES:
-                bg = pygame.image.load(bg_path).convert_alpha()
-                
-                # Scale while preserving aspect ratio
-                bg_aspect = bg.get_width() / bg.get_height()
-                
-                if bg_aspect > screen_aspect:
-                    # Image is wider than screen, scale by height
-                    new_height = self.screen_height
-                    new_width = int(new_height * bg_aspect)
-                    scaled_bg = pygame.transform.smoothscale(bg, (new_width, new_height))
-                    # Center horizontally
-                    x_offset = (new_width - self.screen_width) // 2
-                    scaled_bg = scaled_bg.subsurface((x_offset, 0, self.screen_width, self.screen_height))
-                else:
-                    # Image is taller than screen, scale by width
-                    new_width = self.screen_width
-                    new_height = int(new_width / bg_aspect)
-                    scaled_bg = pygame.transform.smoothscale(bg, (new_width, new_height))
-                    # Center vertically
-                    y_offset = (new_height - self.screen_height) // 2
-                    scaled_bg = scaled_bg.subsurface((0, y_offset, self.screen_width, self.screen_height))
-                
-                self.game_backgrounds.append(scaled_bg)
+                try:
+                    bg = pygame.image.load(bg_path).convert_alpha()
+                    
+                    # Scale while preserving aspect ratio
+                    bg_aspect = bg.get_width() / bg.get_height()
+                    
+                    if bg_aspect > screen_aspect:
+                        # Image is wider than screen, scale by height
+                        new_height = self.screen_height
+                        new_width = int(new_height * bg_aspect)
+                        scaled_bg = pygame.transform.smoothscale(bg, (new_width, new_height))
+                        # Center horizontally
+                        x_offset = (new_width - self.screen_width) // 2
+                        scaled_bg = scaled_bg.subsurface((x_offset, 0, self.screen_width, self.screen_height))
+                    else:
+                        # Image is taller than screen, scale by width
+                        new_width = self.screen_width
+                        new_height = int(new_width / bg_aspect)
+                        scaled_bg = pygame.transform.smoothscale(bg, (new_width, new_height))
+                        # Center vertically
+                        y_offset = (new_height - self.screen_height) // 2
+                        scaled_bg = scaled_bg.subsurface((0, y_offset, self.screen_width, self.screen_height))
+                    
+                    self.game_backgrounds.append(scaled_bg)
+                except Exception as e:
+                    print(f"Error loading background {bg_path}: {e}")
+                    # Use a fallback color if image can't be loaded
+                    fallback_bg = pygame.Surface((self.screen_width, self.screen_height))
+                    fallback_bg.fill(GameConstants.BLACK)
+                    self.game_backgrounds.append(fallback_bg)
             
             # Start with the first background for gameplay
             self.current_bg_index = 0
-            self.background = self.game_backgrounds[self.current_bg_index]
+            if self.game_backgrounds:
+                self.background = self.game_backgrounds[self.current_bg_index]
+            else:
+                # Create a fallback background if no backgrounds were loaded
+                self.background = pygame.Surface((self.screen_width, self.screen_height))
+                self.background.fill(GameConstants.BLACK)
             
-        except pygame.error as e:
+        except Exception as e:
             print(f"Warning: Could not load background images: {e}")
             self.home_background = None
             self.game_backgrounds = []

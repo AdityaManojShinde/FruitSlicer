@@ -21,12 +21,15 @@ class GameConstants:
     # Asset paths
     ASSETS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets")
     
+    # Home screen background
+    HOME_SCREEN_BACKGROUND = os.path.join(ASSETS_DIR, "homescreenbg.png")
+    
     # Background images - define them explicitly
     BACKGROUND_IMAGES = [
-        os.path.join(ASSETS_DIR, "res", "Background1.jpg"),
-        os.path.join(ASSETS_DIR, "res", "Background2.jpg"),
+        os.path.join(ASSETS_DIR, "res", "Background1.png"),
+        os.path.join(ASSETS_DIR, "res", "Background2.png"),
         os.path.join(ASSETS_DIR, "res", "Background3.png"),
-        os.path.join(ASSETS_DIR, "res", "Background4.png"),
+        os.path.join(ASSETS_DIR, "res", "Background4.jpg"),
         os.path.join(ASSETS_DIR, "res", "Background5.png"),
         os.path.join(ASSETS_DIR, "res", "Background6.png"),
         os.path.join(ASSETS_DIR, "res", "Background7.png"),

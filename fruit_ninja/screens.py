@@ -6,8 +6,8 @@ from .constants import GameConstants
 
 class Button:
     """Interactive button class for UI screens"""
-    def __init__(self, x, y, width, height, text, font, text_color=GameConstants.WHITE, 
-                 bg_color=GameConstants.BLACK, hover_color=GameConstants.RED):
+    def __init__(self, x, y, width, height, text, font, text_color=GameConstants.BLACK, 
+                 bg_color=GameConstants.WHITE, hover_color=(220, 220, 220)):
         self.rect = pygame.Rect(x, y, width, height)
         self.text = text
         self.font = font
